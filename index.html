@@ -4,29 +4,24 @@
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
-	<div id="app-4">
-	  <ol>
-	    <li v-for="todo in todos" v-on:click="testMessage">
-	      {{ todo.text }}
-	    </li>
-	  </ol>
-	</div>
-
+	<ol id="app">
+		<todo-item v-for="item in todo" v-bind:todo="item"></todo-item>
+	</ol>
 	<script type="text/javascript">
-	var app4 = new Vue({
-	  el: '#app-4',
-	  data: {
-	    todos: [
-	      { text: 'Learn JavaScript' },
-	      { text: 'Learn Vue' },
-	      { text: 'Build something awesome' }
-	    ]
-	  },
-		methods:{
-			testMessage:function(){
-				this.todos[0].text='test';
-			}
-		}
+	Vue.component('todo-item', {
+		props: ['todo'],
+		template: '<li>{{ todo.text }}</li>'
+	})
+
+	var app7 = new Vue({
+	el: '#app',
+	data: {
+		todo: [
+			{ id: 0, text: 'Vegetables' },
+			{ id: 1, text: 'Cheese' },
+			{ id: 2, text: 'Whatever else humans are supposed to eat' }
+		]
+	}
 	})
 	</script>
 </body>
